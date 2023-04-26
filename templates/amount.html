@@ -1,0 +1,150 @@
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style media="screen">
+    .center {
+      margin:auto;
+        height: 200px;
+        width: 200px;
+        position:fixed;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+  }
+
+  .amount {
+    padding: 10px;
+  }
+
+  .submitbtn {
+    padding: 11px;
+    border: none;
+    border-radius: 5px;
+    background-color: violet;
+    padding-right: 25px;
+    padding-left: 25px;
+    cursor: pointer;
+  }
+  </style>
+  <body>
+    <form class="amountfORM center" action="/records/record/{{username}}/{{usertoken}}" method="POST">
+      {% csrf_token %}
+      <label for="amount">Enter amount</label>
+      <input placeholder="Enter amount" type="number" name="amount" class="amount" value=""><br><br>
+      <input type="submit" name="" class="submitbtn" value="+ Add">
+    </form>
+    <script type="text/javascript">
+      const amountfORM = document.querySelector('.amountfORM')
+      const amountfORMCsrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+      amountfORM.addEventListener('submit', function(e) {
+        e.preventDefault()
+        var amountBackendForm = new FormData();
+        amountBackendForm.append('amount', document.querySelector('.amount').value)
+        amountBackendForm.append('csrfmiddlewaretoken', amountfORMCsrf)
+        fetch('/records/record/{{username}}/{{usertoken}}',  {
+          method: 'POST',
+          body: amountBackendForm
+        })
+      })
+    </script>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+{% load static %}
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Pay</title>
+    <link rel="stylesheet" href="{% static "css/np.css" %}" media="screen">
+    <link rel="stylesheet" href="{% static "css/amount.css" %}" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"logo": "images/default-logo.png"
+}</script>
+<style media="screen">
+  .amountsection {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Page 3">
+    <meta property="og:type" content="website">
+  </head>
+  <body data-home-page="Page-3.html" data-home-page-title="Page 3" class="u-body u-xl-mode" data-lang="en">
+    <p class="upiidElement hidden">{{party_upiid}}</p>
+    {% if user.is_authenticated %}
+    <section style="" class="amountsection u-clearfix u-section-1" id="sec-e3dc">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-grey-10 u-group u-radius-3 u-shape-round u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <img class="u-image u-image-1" src="{% static "images/vendor-qr (2).png" %}" data-image-width="1014" data-image-height="1014">
+            <h3 class="u-text u-text-default u-text-1">{{name}}</h3>
+            <p style="font-size:15px;" class="u-text u-text-default u-text-2">{{username}}</p>
+            <div class="u-form u-form-1">
+              <form action="/records/amountRecord" method="POST" class="amountfORM u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+                {% csrf_token %}
+                <div class="u-form-group">
+                  <label for="email-93b7" class="u-label">Amount</label>
+                  <input type="number" id="email-93b7" name="amount" class="amount u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" placeholder="Enter amount here">
+                </div>
+                <div class="u-align-center u-form-group u-form-submit">
+                  <input type="submit" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-dark-1 u-palette-4-light-1 u-radius-8 u-btn-1" onclick="redirectToDataPage()" name="" value="Pay Later">
+                  <!-- <a href="" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-dark-1 u-palette-4-light-1 u-radius-8 u-btn-1">Pay Later</a> -->
+                  <input type="submit" value="submit" class="u-form-control-hidden">
+                </div>
+                <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+                <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+                <input type="hidden" value="" name="recaptchaResponse">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% else %}
+    <meta http-equiv="REFRESH" content="0;url=/accounts/login">
+    {% endif %}
+    <script type="text/javascript">
+      const amountfORM = document.querySelector('.amountfORM')
+      const amountfORMCsrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+      amountfORM.addEventListener('submit', function(e) {
+        e.preventDefault()
+        var amountBackendForm = new FormData();
+        amountBackendForm.append('amount', document.querySelector('.amount').value)
+        amountBackendForm.append('upiid', document.querySelector('.upiidElement').textContent)
+        console.log(document.querySelector('.upiidElement').textContent);
+        amountBackendForm.append('csrfmiddlewaretoken', amountfORMCsrf)
+        fetch('/records/amountRecord',  {
+          method: 'POST',
+          body: amountBackendForm
+        })
+      })
+
+      function redirectToDataPage() {
+        window.location.replace("/records/credits?q=topay");
+      }
+    </script>
+</body></html>

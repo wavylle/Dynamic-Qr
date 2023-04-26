@@ -1,0 +1,173 @@
+<!-- <!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static "css/login.css" %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="">
+</div>
+    <div class="loginform">
+      <h2>Login</h2>
+    <form class="" action="login" method="POST" >
+      {% csrf_token %}
+      <input class="uname" type="text" oninput="this.value = this.value.toLowerCase()" name="username" value="" placeholder="Username" required><br>
+      <input class="password" type="password" name="password" value="" placeholder="Password"><br>
+      <input class="submitbtn" type="submit" name="" value="Login">
+    </form>
+    <div class="errormsgdiv">
+      {% for message in messages %}
+      <h6 class="errormsg">{{message}}</h6>
+      {% endfor %}
+    </div>
+    </div>
+  </body>
+</html> -->
+
+
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+<title>Ease Your Payments</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'images/android-chrome-192x192.png' %}"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static 'images/favicon-32x32.png' %}"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'images/favicon-16x16.png' %}"
+    />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<link rel="stylesheet" href="{% static "css/login.css" %}">
+<style media="screen">
+
+</style>
+<script nonce="6b69a8c9-c6fe-48fb-9b96-012280eb67f3">(function(w,d){!function(a,e,t,r){a.zarazData=a.zarazData||{};a.zarazData.executed=[];a.zaraz={deferred:[]};a.zaraz.q=[];a.zaraz._f=function(e){return function(){var t=Array.prototype.slice.call(arguments);a.zaraz.q.push({m:e,a:t})}};for(const e of["track","set","ecommerce","debug"])a.zaraz[e]=a.zaraz._f(e);a.zaraz.init=()=>{var t=e.getElementsByTagName(r)[0],z=e.createElement(r),n=e.getElementsByTagName("title")[0];n&&(a.zarazData.t=e.getElementsByTagName("title")[0].text);a.zarazData.x=Math.random();a.zarazData.w=a.screen.width;a.zarazData.h=a.screen.height;a.zarazData.j=a.innerHeight;a.zarazData.e=a.innerWidth;a.zarazData.l=a.location.href;a.zarazData.r=e.referrer;a.zarazData.k=a.screen.colorDepth;a.zarazData.n=e.characterSet;a.zarazData.o=(new Date).getTimezoneOffset();a.zarazData.q=[];for(;a.zaraz.q.length;){const e=a.zaraz.q.shift();a.zarazData.q.push(e)}z.defer=!0;for(const e of[localStorage,sessionStorage])Object.keys(e||{}).filter((a=>a.startsWith("_zaraz_"))).forEach((t=>{try{a.zarazData["z_"+t.slice(7)]=JSON.parse(e.getItem(t))}catch{a.zarazData["z_"+t.slice(7)]=e.getItem(t)}}));z.referrerPolicy="origin";z.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(a.zarazData)));t.parentNode.insertBefore(z,t)};["complete","interactive"].includes(e.readyState)?zaraz.init():a.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,0,"script");})(window,document);</script></head>
+<body style="margin-top:-100px;">
+  <p class="hidden upi_id">{{user_upi_id}}</p>
+  <p class="hidden user_full_name">{{user.first_name}} {{user.last_name}}</p>
+<section class="ftco-section">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-6 text-center mb-5">
+</div>
+</div>
+<div class="row justify-content-center">
+<div class="col-md-7 col-lg-5">
+<div class="wrap">
+<!-- <div class="img" style="background-image:url(/static/images/xbg-1.jpg.pagespeed.ic.EtoN2PmO7Y.webp)"></div> -->
+<div class="login-wrap p-4 p-md-5">
+<div class="d-flex">
+<div class="w-100">
+<!-- <h3 class="mb-4">Sign In</h3> -->
+</div>
+<div class="w-100">
+<p class="social-media d-flex justify-content-end">
+</p>
+</div>
+</div>
+<div class="form-group mt-3">
+<label class="" for="username">Amount</label>
+<input type="number" autocomplete="off" name="amount" class="amount form-control" required>
+</div>
+<div class="form-group">
+<button type="button" class="showqrbtn form-control btn btn-primary rounded submit px-3">Show QR</button>
+</div>
+<div class="form-group d-md-flex">
+</div>
+<div class="qrcodediv hidden">
+  <!-- <div class="qrcode"> -->
+<p class="qrcode text-center"></p>
+<!-- </div> -->
+<p class="text-center belowqrtext"></p>
+<div class="row">
+  <div class="col">
+    <button type="button" class="paidbtn form-control btn btn-primary rounded submit px-3">Paid</button>
+  </div>
+  <!-- <div class="col">
+    <button type="button" class="showqrbtn form-control btn btn-primary rounded submit px-3">New Pay</button>
+  </div> -->
+</div>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% for message in messages %}
+<div class="alertMessage w3-container w3-animate-right">
+<span class="close" onclick="this.parentElement.style.display='none';">×</span>
+{{message}}
+</div>
+{% endfor %}
+<script src="{% static "js/login.js" %}"></script>
+<script>eval(mod_pagespeed_M0XlbbKlq8);</script>
+<script>eval(mod_pagespeed_DUZ_Pnp2XD);</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"742ecbf4daa16ecb","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.8.0","si":100}' crossorigin="anonymous"></script>
+<script type="text/javascript">
+  window.onload = function() {
+    document.querySelector(".amount").focus()
+  }
+
+  document.querySelector(".paidbtn").onclick = function() {
+    document.querySelector(".amount").value = ""
+    document.querySelector(".qrcodediv").classList.add("hidden")
+    document.querySelector(".qrcode").innerHTML = ""
+    document.querySelector(".amount").focus()
+  }
+
+  document.querySelector(".showqrbtn").onclick = function() {
+    document.querySelector(".qrcode").innerHTML = ""
+    if(document.querySelector(".amount").value) {
+      document.querySelector(".qrcodediv").classList.remove("hidden")
+      document.querySelector(".belowqrtext").textContent = "Scan the QR Code to make your payment"
+      // Define the text that you want to encode in the QR code
+      var encoded_upi_id = encodeURIComponent(document.querySelector(".upi_id").textContent);
+      var encoded_full_name = encodeURIComponent(document.querySelector(".user_full_name").textContent);
+      var qr_url = `upi://pay?pa=${encoded_upi_id}&pn=${encoded_full_name}&am=${Number(document.querySelector(".amount").value).toFixed(2)}&cu=INR`
+      const textToEncode = qr_url;
+
+      // Create a new QRCode object with the text to encode and some configuration options
+      const qrcode = new QRCode(document.querySelector(".qrcode"), {
+        text: textToEncode,
+        width: 256,
+        height: 256,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+
+      // Display the QR code in the specified div element on the page
+      qrcode.makeCode(textToEncode);
+
+    }
+    else {
+      document.querySelector(".qrcodediv").classList.add("hidden")
+    }
+  }
+</script>
+</body>
+</html>

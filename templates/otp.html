@@ -1,0 +1,108 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+<title>OTP</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static "css/otp.css" %}">
+<script nonce="6b69a8c9-c6fe-48fb-9b96-012280eb67f3">(function(w,d){!function(a,e,t,r){a.zarazData=a.zarazData||{};a.zarazData.executed=[];a.zaraz={deferred:[]};a.zaraz.q=[];a.zaraz._f=function(e){return function(){var t=Array.prototype.slice.call(arguments);a.zaraz.q.push({m:e,a:t})}};for(const e of["track","set","ecommerce","debug"])a.zaraz[e]=a.zaraz._f(e);a.zaraz.init=()=>{var t=e.getElementsByTagName(r)[0],z=e.createElement(r),n=e.getElementsByTagName("title")[0];n&&(a.zarazData.t=e.getElementsByTagName("title")[0].text);a.zarazData.x=Math.random();a.zarazData.w=a.screen.width;a.zarazData.h=a.screen.height;a.zarazData.j=a.innerHeight;a.zarazData.e=a.innerWidth;a.zarazData.l=a.location.href;a.zarazData.r=e.referrer;a.zarazData.k=a.screen.colorDepth;a.zarazData.n=e.characterSet;a.zarazData.o=(new Date).getTimezoneOffset();a.zarazData.q=[];for(;a.zaraz.q.length;){const e=a.zaraz.q.shift();a.zarazData.q.push(e)}z.defer=!0;for(const e of[localStorage,sessionStorage])Object.keys(e||{}).filter((a=>a.startsWith("_zaraz_"))).forEach((t=>{try{a.zarazData["z_"+t.slice(7)]=JSON.parse(e.getItem(t))}catch{a.zarazData["z_"+t.slice(7)]=e.getItem(t)}}));z.referrerPolicy="origin";z.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(a.zarazData)));t.parentNode.insertBefore(z,t)};["complete","interactive"].includes(e.readyState)?zaraz.init():a.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,0,"script");})(window,document);</script></head>
+<body style="margin-top:-100px;">
+<section class="ftco-section">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-6 text-center mb-5">
+</div>
+</div>
+<div class="row justify-content-center">
+<div class="col-md-7 col-lg-5">
+<div class="wrap">
+<!-- <div class="img" style="background-image:url(images/xbg-1.jpg.pagespeed.ic.EtoN2PmO7Y.webp)"></div> -->
+<div class="login-wrap p-4 p-md-5">
+<div class="d-flex">
+<div class="w-100">
+  {{otp}}
+<h3 class="mb-4">Phone verfication</h3>
+</div>
+<div class="w-100">
+<p class="social-media d-flex justify-content-end">
+</p>
+</div>
+</div>
+<p class="otpval" style="display:none;">{{otp}}</p>
+<p class="usernameval" style="display:none;">{{username}}</p>
+<form action="otpverification" method="POST" class="signin-form">
+<div class="form-group mt-3">
+<label class="" for="otp">OTP</label>
+<input type="number" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="otp" class="otpfield form-control" required>
+</div>
+<div class="form-group">
+<button type="submit" class="verifybtn form-control btn btn-primary rounded submit px-3">Submit</button>
+</div>
+<div class="form-group d-md-flex">
+<!-- <div class="w-50 text-left">
+<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+<input type="checkbox" checked>
+<span class="checkmark"></span>
+</label>
+</div> -->
+<div class="w-50 text-md-right">
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="alertMessage w3-container hidden w3-animate-right">
+<span class="close" onclick="this.parentElement.style.display='none';">×</span>
+</div>
+<!-- <div class="alert warning-alert">
+  <h3>Warning Alert Message</h3>
+  <a class="close">&times;</a>
+</div> -->
+<script type="text/javascript">
+  document.querySelector('.verifybtn').onclick = function(e) {
+    e.preventDefault()
+    // console.log(document.querySelector('.otpfield').value);
+    // console.log(typeof(document.querySelector('.otpfield').value));
+    //
+    // console.log(document.querySelector('.otpval').textContent);
+    // console.log(typeof(document.querySelector('.otpval').textContent));
+    // if(Number(document.querySelector('.otpfield').value) !== Number(document.querySelector('.otpval').textContent)) {
+    //   document.querySelector('.alertMessage').classList.remove('hidden')
+    //   document.querySelector('.alertMessage').textContent = 'Invalid OTP'
+    //   setTimeout(() => {
+    //     document.querySelector('.alertMessage').classList.add('hidden')
+    //   }, 3000)
+    // }
+    if(Number(document.querySelector('.otpfield').value) === Number(document.querySelector('.otpval').textContent)) {
+      const otpForm = new FormData()
+      otpForm.append('otpinp', document.querySelector('.otpfield').value)
+      otpForm.append('username', document.querySelector('.usernameval').textContent)
+
+      fetch('otpverification', {
+        method: 'POST',
+        body: otpForm
+      })
+      window.location.replace("/records/credits?q=topay");
+    }
+    else {
+      document.querySelector('.alertMessage').classList.remove('hidden')
+      document.querySelector('.alertMessage').textContent = 'Invalid OTP'
+      setTimeout(() => {
+        document.querySelector('.alertMessage').classList.add('hidden')
+      }, 3000)
+    }
+  }
+</script>
+<!-- <script src="{% static "js/login.js" %}"></script> -->
+<script>eval(mod_pagespeed_M0XlbbKlq8);</script>
+<script>eval(mod_pagespeed_DUZ_Pnp2XD);</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"742ecbf4daa16ecb","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.8.0","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>

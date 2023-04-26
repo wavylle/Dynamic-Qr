@@ -1,0 +1,577 @@
+{% load static %}
+<html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>-</title>
+      <link
+        rel="shortcut icon"
+        type="image/png"
+        href="android-chrome-512x512.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="apple-touch-icon.png"
+      />
+      <link
+        rel="shortcut icon"
+        type="image/png"
+        sizes="32x32"
+        href="favicon-32x32.png"
+      />
+      <link
+        rel="shortcut icon"
+        type="image/png"
+        sizes="16x16"
+        href="favicon-16x16.png"
+      />
+      <link href="{% static "css/all.min.css" %}" rel="stylesheet" type="text/css">
+      <link
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+      <!-- Custom styles for this template-->
+      <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+      <link rel="manifest" href="site.webmanifest" />
+      <meta name="msapplication-TileColor" content="#da532c" />
+      <meta name="theme-color" content="#ffffff" />
+      <link rel="stylesheet" href="{% static "css/creditrecords.css" %}" />
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous"
+      />
+      <style>
+        .labs {
+          display: inline-block;
+          width: 100px;
+        }
+      </style>
+      <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+      ></script>
+      <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+      ></script>
+      <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+      ></script>
+    </head>
+    <body>
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <input type="text" class="form-control bg-light border-0 small" id="myInput" style="width: 300px;" onkeyup="searchFilter()" placeholder="Search.." title="Type in a title">
+
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <li class="nav-item dropdown no-arrow d-sm-none">
+                            <!-- <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a> -->
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <!-- <form class="form-inline mr-auto w-100 navbar-search"> -->
+                                    <div class="input-group">
+                                        <!-- <input type="text" id="myInput" style="margin-bottom:10px;" class="form-control bg-light border-0 small" onkeyup="searchFilter()" placeholder="Search.." title="Type in a title"> -->
+                                        <!-- <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div> -->
+                                    </div>
+                                <!-- </form> -->
+                            </div>
+                        </li>
+
+              <!-- Nav Item - Alerts -->
+              <li class="nav-item dropdown no-arrow mx-1">
+                  <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="{% static "images/notification-icon.png" %}" width="25px;" alt="">
+                      <!-- Counter - Alerts -->
+                      <span class="badge badge-danger badge-counter">3+</span>
+                  </a>
+                  <!-- Dropdown - Alerts -->
+                  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                      aria-labelledby="alertsDropdown">
+                      <h6 class="dropdown-header">
+                          Alerts Center
+                      </h6>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                          <div class="mr-3">
+                              <div class="icon-circle bg-primary">
+                                  <i class="fas fa-file-alt text-white"></i>
+                              </div>
+                          </div>
+                          <div>
+                              <div class="small text-gray-500">December 12, 2019</div>
+                              <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                          </div>
+                      </a>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                          <div class="mr-3">
+                              <div class="icon-circle bg-success">
+                                  <i class="fas fa-donate text-white"></i>
+                              </div>
+                          </div>
+                          <div>
+                              <div class="small text-gray-500">December 7, 2019</div>
+                              $290.29 has been deposited into your account!
+                          </div>
+                      </a>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                          <div class="mr-3">
+                              <div class="icon-circle bg-warning">
+                                  <i class="fas fa-exclamation-triangle text-white"></i>
+                              </div>
+                          </div>
+                          <div>
+                              <div class="small text-gray-500">December 2, 2019</div>
+                              Spending Alert: We've noticed unusually high spending for your account.
+                          </div>
+                      </a>
+                      <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                  </div>
+              </li>
+
+              <!-- Nav Item - Messages -->
+
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.first_name}} {{user.last_name}}</span>
+                      <img class="img-profile rounded-circle"
+                          src="{% static "images/defprofile.png" %}">
+                  </a>
+                  <!-- Dropdown - User Information -->
+                  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                      aria-labelledby="userDropdown">
+                      <a class="dropdown-item" href="/records/dashboard">
+                          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                          Dashboard
+                      </a>
+                      <a class="dropdown-item" href="#">
+                          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                          Settings
+                      </a>
+                      <a class="dropdown-item" href="#">
+                          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                          Activity Log
+                      </a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="/accounts/logout">
+                          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                          Logout
+                      </a>
+                  </div>
+              </li>
+
+          </ul>
+
+      </nav>
+
+      <!-- Nav End -->
+
+      <p class="userRecFromBackend hidden">{{userRecords}}</p>
+      <button id="scanBtn" onclick="window.location='/scan/qr';"><img src="{% static "images/scan-icon.png" %}" width="40px" alt=""></button>
+      <p class="clearstatus hidden">Record Cleared!</p>
+      <div class="tableContainer container mt-3">
+        <!-- <ul class="nav nav-pills nav-fill">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">To Recieve</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">To Pay</a>
+          </li>
+        </ul><br> -->
+
+        <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link tab1 active" aria-current="page" href="http://127.0.0.1:8000/records/credits?q=topay">To pay</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link tab2" href="http://127.0.0.1:8000/records/credits?q=toreceive">To recieve</a>
+  </li>
+</ul><br>
+
+          <!-- <input type="text" id="myInput" style="margin-bottom:10px;" class="form-control" onkeyup="searchFilter()" placeholder="Search.." title="Type in a title"> -->
+        <!-- <div class="clearButton btnmod btn-danger" data-toggle="modal" data-target="#exampleModalCenter">&times; Clear</div> -->
+        <div class="totalPaidAndUnpaid">
+          <div class="float-left totalPaid">
+            <h5 class="totalPaidAmt"></h5>
+            <p class="headerTotalTitle">Total paid</p>
+          </div>
+          <div class="float-right totalUnpaid">
+            <h5 class="totalUnpaidAmt"></h5>
+            <p class="headerTotalTitle">Total unpaid</p>
+          </div>
+        </div>
+
+        <table class="table recordTable borderless">
+          <thead class="thead">
+            <th>Party</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Actions</th>
+          </thead>
+          <tbody id="tbody1">
+            {% for i in userRecords %}
+            <tr class="tRow">
+              <td class="partyNameCell"></td>
+              <td class="statusTd">
+                <div class="statusDiv">
+                  <p class="status"></p>
+                </div>
+              </td>
+              <td class="amountCell">{{i.amount}}</td>
+              <td><button data-toggle="modal" data-target="#exampleModalCenter" onclick="userDeets(this)" class="actions" style="cursor:pointer;">&#10247;</button></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Modal -->
+      <div
+        class="modal fade hidden"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                User Details
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <label class="labs">Username: </label> <br>
+              <input type="text" readonly id="party_username" /><img src="{% static "images/copytoclipboard.png" %}" width="25px" class="usernameCopyImg" style="padding:5px;cursor:pointer;" onclick="usernameCopy()" alt=""> <br />
+              <label class="labs">Name: </label> <br>
+              <input type="text" readonly id="party_name" /><img src="{% static "images/copytoclipboard.png" %}" width="25px" class="nameCopyImg" style="padding:5px;cursor:pointer;" onclick="nameCopy()" alt=""> <br />
+              <label class="labs">Amount: </label><br>
+              <input type="text" readonly id="amount" /><img src="{% static "images/copytoclipboard.png" %}" width="25px" class="amountCopyImg" style="padding:5px;cursor:pointer;" onclick="amountCopy()" alt=""> <br>
+              <label class="labs">Contact: </label><br>
+              <input type="number" readonly id="contact" /><img src="{% static "images/copytoclipboard.png" %}" width="25px" class="contactCopyImg" style="padding:5px;cursor:pointer;" onclick="contactCopy()" alt="">
+              <input type="text" hidden name="transaction_id" class="transaction_id" value="">
+              <input type="text" hidden name="selfStatus" class="selfStatus" value="">
+            </div>
+            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="updateStatusBtn btn-active" onclick="statusUpdateToUnpaid()" name="button"></button>
+            <div class="modal-footer">
+              <button
+                id="closeUserDeets"
+                type="button"
+                class="btn-active"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="hidden alert alert-success" style="width:300px;">
+    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+  </div> -->
+
+      <main>
+      </main>
+
+      <script type="text/javascript">
+
+      // window.onload = function() {
+      //   console.log('Loaded');
+      //   setTimeout(() => {
+      //     populateTable()
+      //   }, 5000)
+      // }
+
+
+      var thisUrl = new URL(window.location.href)
+      if(thisUrl.searchParams.get('q') === 'topay') {
+        document.querySelector('.tab1').classList.add('active')
+        document.querySelector('.tab2').classList.remove('active')
+
+        document.querySelectorAll('.headerTotalTitle')[0].textContent = 'Total paid'
+        document.querySelectorAll('.headerTotalTitle')[1].textContent = 'Total unpaid'
+
+      }
+      else if(thisUrl.searchParams.get('q') === 'toreceive') {
+        document.querySelector('.tab1').classList.remove('active')
+        document.querySelector('.tab2').classList.add('active')
+
+        document.querySelectorAll('.headerTotalTitle')[0].textContent = 'Total received'
+        document.querySelectorAll('.headerTotalTitle')[1].textContent = 'Total unreceived'
+      }
+
+        (() => {
+          if (window.localStorage) {
+
+            // If there is no item as 'reload'
+            // in localstorage then create one &
+            // reload the page
+            if (!localStorage.getItem('reload')) {
+              console.log('1');
+              localStorage['reload'] = true;
+              window.location.reload();
+            } else {
+
+              // If there exists a 'reload' item
+              // then clear the 'reload' item in
+              // local storage
+              console.log('2');
+              localStorage.removeItem('reload');
+            }
+          }
+        })(); // Calling anonymous function here only
+
+        function populateTable() {
+          var total_paid = 0
+          var total_unpaid = 0
+          fetch(`http://127.0.0.1:8000/records/creditRecJson?q={{query}}`).then(response => response.json()).then(data => {
+            for(let y = 0; y < data.length; y++) {
+              var occurence = 0
+              document.querySelectorAll('.partyNameCell')[y].textContent = data[y]['party_name']
+              document.querySelectorAll('.status')[y].textContent = data[y]['self_status']
+              document.querySelectorAll('.amountCell')[y].textContent = Number(data[y]['amount'])
+            //   for(let u = 0; u < data.length; u++) {
+            //   if(data[y]['username'] === data[u]['username']) {
+            //     if(y !== u) {
+            //       console.log('Here');
+            //       document.querySelectorAll('.amountCell')[y].textContent = Number(document.querySelectorAll('.amountCell')[y].textContent) + Number(data[u]['amount'])
+            //       document.querySelectorAll('.partyNameCell')[y].textContent = data[y]['party_name']
+            //     }
+            //   }
+            // }
+              if(data[y]['self_status'] === 'Paid' || data[y]['self_status'] === 'Received') {
+                total_paid += Number(data[y]['amount'])
+                document.querySelectorAll('.statusDiv')[y].style.backgroundColor = '#00B818'
+              }
+              else if(data[y]['self_status'] === 'Unpaid' || data[y]['self_status'] === 'Unreceived') {
+                total_unpaid += Number(data[y]['amount'])
+                document.querySelectorAll('.statusDiv')[y].style.backgroundColor = '#FF4747'
+              }
+              else {
+                document.querySelectorAll('.statusDiv')[y].style.backgroundColor = '#A0CFD3'
+                // document.querySelectorAll('.status')[y].style.color = 'black'
+              }
+            }
+            document.querySelector('.totalPaidAmt').textContent = 'Rs. ' + total_paid
+            document.querySelector('.totalUnpaidAmt').textContent = 'Rs. ' + total_unpaid
+          })
+        }
+
+          populateTable()
+
+function userDeets(x) {
+  fetch('http://127.0.0.1:8000/records/creditRecJson?q={{query}}').then(response => response.json()).then(data => {
+  document.querySelector('.modal').classList.remove('hidden')
+  const userRecObj = eval(document.querySelector('.userRecFromBackend').textContent)
+  document.getElementById('party_username').value = data[x.parentElement.parentElement.rowIndex - 1]['party_username']
+  document.getElementById('party_name').value = data[x.parentElement.parentElement.rowIndex - 1]['party_name']
+  document.getElementById('amount').value = data[x.parentElement.parentElement.rowIndex - 1]['amount']
+  document.getElementById('contact').value = data[x.parentElement.parentElement.rowIndex - 1]['party_phone']
+  document.querySelector('.transaction_id').value = data[x.parentElement.parentElement.rowIndex - 1]['transaction_id']
+  document.querySelector('.selfStatus').value = data[x.parentElement.parentElement.rowIndex - 1]['self_status']
+  if(data[x.parentElement.parentElement.rowIndex - 1]['self_status'] === 'Unpaid') {
+    document.querySelector('.updateStatusBtn').innerHTML = 'Mark as paid'
+  }
+  else if (data[x.parentElement.parentElement.rowIndex - 1]['self_status'] === 'Paid') {
+  document.querySelector('.updateStatusBtn').innerHTML = 'Mark as unpaid'
+  }
+  else if (data[x.parentElement.parentElement.rowIndex - 1]['self_status'] === 'Received') {
+  document.querySelector('.updateStatusBtn').innerHTML = 'Mark as unreceived'
+  }
+  else if (data[x.parentElement.parentElement.rowIndex - 1]['self_status'] === 'Unreceived') {
+  document.querySelector('.updateStatusBtn').innerHTML = 'Mark as received'
+  }
+})
+}
+
+function searchFilter() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.querySelector(".recordTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      innerHTMLArr = td.textContent
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function usernameCopy() {
+  navigator.clipboard.writeText(document.getElementById('party_username').value);
+  document.querySelector('.usernameCopyImg').src = "{% static 'images/checkicon.png' %}"
+  setInterval(() => {
+    document.querySelector('.usernameCopyImg').src = "{% static 'images/copytoclipboard.png' %}"
+  }, 1000)
+}
+
+function nameCopy() {
+  navigator.clipboard.writeText(document.getElementById('party_name').value);
+  document.querySelector('.nameCopyImg').src = "{% static 'images/checkicon.png' %}"
+  setInterval(() => {
+    document.querySelector('.nameCopyImg').src = "{% static 'images/copytoclipboard.png' %}"
+  }, 1000)
+}
+
+function amountCopy() {
+  navigator.clipboard.writeText(document.getElementById('amount').value);
+  document.querySelector('.amountCopyImg').src = "{% static 'images/checkicon.png' %}"
+  setInterval(() => {
+    document.querySelector('.amountCopyImg').src = "{% static 'images/copytoclipboard.png' %}"
+  }, 1000)
+}
+
+function contactCopy() {
+  navigator.clipboard.writeText(document.getElementById('contact').value);
+  document.querySelector('.contactCopyImg').src = "{% static 'images/checkicon.png' %}"
+  setInterval(() => {
+    document.querySelector('.contactCopyImg').src = "{% static 'images/copytoclipboard.png' %}"
+  }, 1000)
+}
+
+// for(let x = 0; x < document.querySelectorAll('.tRow').length; x++) {
+//   if(x % 2 !== 0) {
+//     document.querySelectorAll('.tRow')[x].style.backgroundColor = '#F5F4F5'
+//     console.log('Here');
+//   }
+// }
+
+function statusUpdateToPaid() {
+  const statusUpdtForm = new FormData()
+  statusUpdtForm.append('username', document.getElementById('party_username').value)
+  statusUpdtForm.append('transaction_id', document.querySelector('.transaction_id').value)
+  statusUpdtForm.append('new_self_status', 'Paid')
+
+  fetch('statusUpdt', {
+    method: 'POST',
+    body: statusUpdtForm
+  })
+
+  userDeets()
+
+  setTimeout(() => {
+    populateTable()
+  }, 1000)
+  // window.location.reload();
+}
+
+function statusUpdateToUnpaid() {
+  const statusUpdtForm = new FormData()
+  statusUpdtForm.append('username', document.getElementById('party_username').value)
+  statusUpdtForm.append('transaction_id', document.querySelector('.transaction_id').value)
+  statusUpdtForm.append('new_self_status', 'Unpaid')
+
+  fetch('statusUpdt', {
+    method: 'POST',
+    body: statusUpdtForm
+  })
+
+  userDeets()
+
+  // window.location.reload();
+  setTimeout(() => {
+    populateTable()
+  }, 1000)
+}
+
+function statusUpdateToReceived() {
+  const statusUpdtForm = new FormData()
+  statusUpdtForm.append('username', document.getElementById('party_username').value)
+  statusUpdtForm.append('transaction_id', document.querySelector('.transaction_id').value)
+  statusUpdtForm.append('new_self_status', 'Received')
+
+  fetch('statusUpdt', {
+    method: 'POST',
+    body: statusUpdtForm
+  })
+
+  userDeets()
+
+  // window.location.reload();
+  setTimeout(() => {
+    populateTable()
+  }, 1000)
+}
+
+function statusUpdateToUnreceived() {
+  const statusUpdtForm = new FormData()
+  statusUpdtForm.append('username', document.getElementById('party_username').value)
+  statusUpdtForm.append('transaction_id', document.querySelector('.transaction_id').value)
+  statusUpdtForm.append('new_self_status', 'Unreceived')
+
+  fetch('statusUpdt', {
+    method: 'POST',
+    body: statusUpdtForm
+  })
+
+  userDeets()
+
+  // window.location.reload();
+  setTimeout(() => {
+    populateTable()
+  }, 1000)
+}
+
+document.querySelector('.updateStatusBtn').onclick = function() {
+  if(document.querySelector('.selfStatus').value === 'Paid') {
+    statusUpdateToUnpaid()
+  }
+  else if(document.querySelector('.selfStatus').value === 'Unpaid') {
+    statusUpdateToPaid()
+  }
+  else if(document.querySelector('.selfStatus').value === 'Received') {
+    statusUpdateToUnreceived()
+  }
+  else if(document.querySelector('.selfStatus').value === 'Unreceived') {
+    statusUpdateToReceived()
+  }
+}
+
+
+      </script>
+    </body>
+  </html>
+</html>
