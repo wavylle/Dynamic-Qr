@@ -100,6 +100,7 @@
   <!-- <div class="qrcode"> -->
 <p class="qrcode text-center"></p>
 <!-- </div> -->
+<p class="text-center upiandamount"></p>
 <p class="text-center belowqrtext"></p>
 <div class="row">
   <div class="col">
@@ -144,6 +145,7 @@
     if(document.querySelector(".amount").value) {
       document.querySelector(".qrcodediv").classList.remove("hidden")
       document.querySelector(".belowqrtext").textContent = "Scan the QR Code to make your payment"
+      document.querySelector(".upiandamount").innerHTML = `₹ <strong>${document.querySelector(".amount").value}</strong> | <strong>${document.querySelector(".upi_id").textContent}</strong>`
       // Define the text that you want to encode in the QR code
       var encoded_upi_id = encodeURIComponent(document.querySelector(".upi_id").textContent);
       var encoded_full_name = encodeURIComponent(document.querySelector(".user_full_name").textContent);
