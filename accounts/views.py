@@ -4,11 +4,12 @@ import time
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 import hashlib
-from .models import userData
+from .models import userData, qrRecords
 from django.views.decorators.csrf import csrf_exempt
 import requests
 from django.contrib.auth import get_user_model
 import json
+from datetime import datetime
 
 def index(request):
     if request.user.is_authenticated:
@@ -185,3 +186,14 @@ def otpverification(request):
 #
 #     results = face_recognition.compare_faces(knownEncodeList, unknown_encodings)
 #     print(results)
+
+@csrf_exempt
+def qrRecordsFunc(request):
+    if request.method == "POST":
+        now = datetime.now()
+        timestamp = now.strftime("%d/%m/%Y %H:%M:%S")
+        username = request.user.username
+
+        qrRecords.objects.create(username = username, timestamp = str(timestamp))
+
+        return redirect("/")

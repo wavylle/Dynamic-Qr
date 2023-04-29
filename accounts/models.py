@@ -10,3 +10,10 @@ class userData(models.Model):
 
     def __str__(self):
         return self.username
+
+class qrRecords(models.Model):
+    username = models.CharField(max_length = 255, default = 0)
+    timestamp = models.CharField(max_length = 255, default = 0)
+
+    def __str__(self):
+        return self.username

@@ -141,6 +141,9 @@
   }
 
   document.querySelector(".showqrbtn").onclick = function() {
+    fetch("/accounts/qrRecordsFunc", {
+      method: "POST",
+    })
     document.querySelector(".qrcode").innerHTML = ""
     if(document.querySelector(".amount").value) {
       document.querySelector(".qrcodediv").classList.remove("hidden")

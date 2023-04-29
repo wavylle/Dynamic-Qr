@@ -8,4 +8,5 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     # path('otpverification', views.otpverification, name = 'otpverification'),
     # path('imagePost', views.imagePost, name = 'imagePost'),
+    path('qrRecordsFunc', views.qrRecordsFunc, name = 'qrRecordsFunc'),
 ]
